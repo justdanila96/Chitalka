@@ -50,14 +50,14 @@ namespace Chitalka.ViewModels {
             foreach (var imgSrc in fb2.Images) {
 
                 var span = new ReadOnlySpan<byte>(imgSrc.Value.BinaryData);
-                var img = SixLabors.ImageSharp.Image.Load(span);
+                var img = Image.Load(span);
                 var str = new MemoryStream();
                 img.SaveAsJpeg(str);
                 str.Seek(0, SeekOrigin.Begin);
                 var bmp = new BitmapImage();
                 bmp.BeginInit();
                 bmp.StreamSource = str;
-                bmp.EndInit();                
+                bmp.EndInit();
                 images.Value.Add(imgSrc.Key, bmp);
             }
         }
@@ -134,10 +134,10 @@ namespace Chitalka.ViewModels {
                 case ImageItem imgItem:
 
                     var key = imgItem.HRef.Replace("#", string.Empty);
-                    if(images.Value.TryGetValue(key, out BitmapImage img)) {
+                    if (images.Value.TryGetValue(key, out BitmapImage img)) {
 
-                        var ui = new BlockUIContainer(new System.Windows.Controls.Image { Source = img });
-                        section.Blocks.Add(ui);
+                        var imgBlock = new BlockUIContainer(new System.Windows.Controls.Image { Source = img });
+                        section.Blocks.Add(imgBlock);
                     }
 
                     break;

@@ -4,7 +4,7 @@ using System;
 
 namespace Chitalka.Misc {
     internal partial class BookItem : ObservableObject {
-        private static readonly Uri NoImagePhoto = new("pack://application:,,,/Images/no image.png");
+        //private static readonly Uri NoImagePhoto = new("pack://application:,,,/Images/no image.png");
 
         public int Id { get; }
 
@@ -12,10 +12,13 @@ namespace Chitalka.Misc {
         private string name;
 
         [ObservableProperty]
-        private Uri thumbnail;
+        private Uri? thumbnail;
 
         [ObservableProperty]
         private bool noImage;
+
+        [ObservableProperty]
+        private bool hasImage;
 
         [ObservableProperty]
         private string authors;      
@@ -30,8 +33,9 @@ namespace Chitalka.Misc {
             Name = book.Name;
             Authors = string.Join(", ", book.Authors);            
             NoImage = book.Thumbnail == null;
+            HasImage = !NoImage;
             Thumbnail = NoImage
-                ? NoImagePhoto
+                ? null
                 : new Uri(GetThumbnailFilePath(book.Thumbnail), UriKind.Absolute);
         }
     }
