@@ -62,6 +62,7 @@
                                         <Border
                                             Width="20"
                                             Height="20"
+                                            Margin="5"
                                             Background="CornflowerBlue"
                                             CornerRadius="4">
                                             <Label
@@ -266,6 +267,7 @@
                         BorderBrush="DimGray"
                         BorderThickness="3"
                         CornerRadius="10">
+                        
                         <Grid ClipToBounds="True">
 
                             <Image

@@ -20,9 +20,9 @@ namespace Chitalka.ViewModels {
                 Load($"ReaderPage.xaml?id={id}");
             };
 
-            //ReaderPageViewModel.BackToLibrary += () => {
-            //    Load("StartPage.xaml");
-            //};
+            ReaderPageViewModel.GettingBack += () => {
+                Load("StartPage.xaml");
+            };
         }
 
         [RelayCommand]

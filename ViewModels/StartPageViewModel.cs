@@ -18,6 +18,11 @@ namespace Chitalka.ViewModels {
             SettingsOpening?.Invoke();
         }
 
+        [RelayCommand]
+        private void OpenBook(BookItem selectedBook) {
+            BookSelected?.Invoke(selectedBook.Id);
+        }
+
         [ObservableProperty]
         private ObservableCollection<BookItem> bookItems;
 

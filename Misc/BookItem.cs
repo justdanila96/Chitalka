@@ -18,10 +18,7 @@ namespace Chitalka.Misc {
         private bool noImage;
 
         [ObservableProperty]
-        private string authors;
-
-        [ObservableProperty]
-        private string pathToFile;
+        private string authors;      
 
         private static string GetThumbnailFilePath(string thumbnail) {
             return Properties.Settings.Default.PathToCache + $@"\{thumbnail}.jpg";
@@ -31,8 +28,7 @@ namespace Chitalka.Misc {
 
             Id = book.Id;
             Name = book.Name;
-            Authors = string.Join(", ", book.Authors);
-            PathToFile = book.PathToFile;
+            Authors = string.Join(", ", book.Authors);            
             NoImage = book.Thumbnail == null;
             Thumbnail = NoImage
                 ? NoImagePhoto

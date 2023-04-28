@@ -30,6 +30,12 @@ namespace Chitalka.Tools {
             return books.FindAll().ToArray();
         }
 
+        public static Book GetBookById(int id) {
+            using var db = new LiteDatabase(DbName);
+            ILiteCollection<Book> books = db.GetCollection<Book>(TabName);
+            return books.FindById(id);
+        }
+
         public static IEnumerable<string> GetAllAuthors(IEnumerable<Book> books) {
             var authors = new SortedSet<string>();
             foreach (Book book in books) {
@@ -73,7 +79,7 @@ namespace Chitalka.Tools {
             return new XmlLoadSettings(readSettings);
         }
 
-        private static async Task<FB2File> ReadFile(string file) {
+        public static async Task<FB2File> ReadFile(string file) {
             try {
                 var reader = new FB2Reader();
                 using var stream = new FileStream(file, FileMode.Open, FileAccess.Read);
